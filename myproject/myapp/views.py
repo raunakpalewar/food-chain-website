@@ -807,8 +807,6 @@ def view1(request):
 
 
 
-
-
 def show_restaurants(request):
     if request.method == 'POST':
         # Assuming you have form fields with the names 'restaurant_name', 'food_name', and 'location'

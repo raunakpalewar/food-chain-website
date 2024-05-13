@@ -806,19 +806,7 @@ def view1(request):
     return render(request, 'index.html')
 
 
-# def opt(request):
 
-#     account_sid = 'AC853ba44b2807cd9facda796877e0b3cd'
-#     auth_token = 'ad7a4c5368b599aaf667de370da6783b'
-#     client = Client(account_sid, auth_token)
-
-#     message = client.messages.create(
-#         from_='+15075851472',
-#         body='your otp for registration is',
-#         to='+919145433778'
-#     )
-
-#     print(message.sid)
 
 
 def show_restaurants(request):

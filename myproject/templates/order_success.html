@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+    <style>
+        body {
+            background-image: url('{% static 'images/hero-bg.jpg' %}');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .d1 {
+            background-color: rgba(13, 11, 23, 0.9);
+            width: 40%;
+            margin: 5% auto 7%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #000;
+            text-align: center;
+            color: white;
+        }
+        h2 {
+            margin: 0;
+        }
+        p {
+            margin-top: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: yellow;
+        }
+        th{
+            color: gold;
+        }
+        table{
+            border:1px solid burlywood;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="d1">
+            <h1>Your Order Details</h1>
+    <table >
+        <tr>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Location</th>
+        </tr>
+        <tr>
+            <td>{{ order_details.item_name }}</td>
+            <td>{{ order_details.quantity }}</td>
+            <td>{{ order_details.price }}</td>
+            <td>{{ order_details.total }}</td>
+            <td>{{ order_details.location }}</td>
+        </tr>
+    </table>
+        </div>
+    </section>
+    {{ error_message }}
+
+</body>
+</html>

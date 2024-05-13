@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+    <style>
+        body {
+            background-image: url('{% static 'images/hero-bg.jpg' %}');
+            background-size: cover;
+            background-color: grey;
+            text-align: center;
+            color:white;
+        }
+        .d1 {
+            background-color: rgba(13, 11, 23, 0.9);
+            width: 40%;
+            margin: 5% auto 7%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #000;
+            text-align: center;
+            color: white;
+        }
+        h2 {
+            margin: 0;
+        }
+        p {
+            margin-top: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: rgb(200, 250, 19);
+            font-size: large;
+        }
+        table,th,td{
+            background-color: rgb(5, 31, 63);
+            color: rgb(243, 229, 203);
+            border: 1px solid white;
+        }
+        table{
+            margin: auto;
+        }
+        td{
+            width: 200px;
+        }
+        th{
+            color:red;
+            background-color: yellow;
+            font-size: larger;
+        }
+        .styled-button {
+            background-color: #03272f; /* Green background color */
+            border: none; /* Remove border */
+            color:#000;
+            padding: 15px 32px; /* Padding around text */
+            text-align: center; /* Center text */
+            text-decoration: none; /* Remove default underline style for links */
+            display: inline-block; /* Display as inline-block to adjust width based on content */
+            font-size: 16px; /* Font size */
+            margin: 2%; /* Margin around the button */
+            cursor: pointer; /* Set cursor to pointer on hover */
+            transition: background-color 0.3s; /* Smooth transition for background color change */
+            border-radius: 10%;
+        }
+        
+        /* Hover effect */
+        .styled-button:hover {
+            background-color: #45a049; /* Darker green background color on hover */
+        }
+    </style>
+</head>
+<body style="margin:auto">
+    <div class="User_option">
+        <a href="{% url 'owner_logout' %}">
+          <i class="fa fa-user" aria-hidden="true"></i>
+          <span>Logout</span>
+        </a>
+        
+      </div>
+    {% if restaurant_name %}
+    {% else %}
+        <button id="addrestraurantBtn" class="styled-button"><a href="{% url 'add_new_restaurant' %}">Add New Restaurant </a></button>
+    {% endif %}
+
+    <h1>Restaurant {{ restaurant_name }} Menu</h1>
+    <p><strong>Address:</strong> {{ restaurant_address }}</p>
+    <img src="{{ restaurant_image }}" alt="{{ restaurant_name }}" style="max-width: 300px;">
+
+    <table>
+        <thead>
+            {% if menu_items %}
+            <tr>
+                <th>Food Name</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for menu_item in menu_items %}
+            <tr>
+                <td>{{ menu_item.food_name }}</td>
+                <td>{{ menu_item.price }}</td>
+                <td><img src="{{ menu_item.image }}" alt="{{ menu_item.food_name }}" style="max-width: 100px;"></td>
+                    <td>
+                        <a href="{% url 'updatemenu' %}?food_name={{ menu_item.food_name }}&price={{ menu_item.price }}&category={{ menu_item.category }}">Update</a>
+                        <a href="{% url 'deletemenu' %}?food_name={{ menu_item.food_name }}">Delete</a>
+                    </td>
+                    
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% endif %}
+    </table>
+    <button id="addMenuBtn" class="styled-button"><a href="{% url 'addmenu' %}">Add New Menu Item</a></button>
+    {{ error_message }}
+
+</body>
+
+</html>
